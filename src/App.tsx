@@ -503,7 +503,7 @@ function App() {
               </React.Fragment>
             ))}
             
-            {mode === '3d' && [-6, -4, -2, 2, 4, 6].map((tick) => (
+            {mode === '3d' && [-6, -5, -4, -3, -2,-1, 0, 1, 2, 3, 4, 5, 6].map((tick) => (
               <React.Fragment key={`z-${tick}`}>
                 <Text
                   position={[0.4, 0, tick]}
