@@ -118,11 +118,13 @@ const MathSurface: React.FC<MathSurfaceProps> = ({ equation, resolution, mode })
     }
   }, [equation, resolution, mode]);
 
-  if (isLine) {
-    return <line geometry={geometry as THREE.BufferGeometry} material={material as THREE.LineBasicMaterial} />;
-  } else {
-    return <mesh geometry={geometry as THREE.PlaneGeometry} material={material as THREE.MeshStandardMaterial} />;
-  }
+
+if (isLine) {
+  return <primitive object={new THREE.Line(geometry as THREE.BufferGeometry, material as THREE.LineBasicMaterial)} />;
+} else {
+  return <mesh geometry={geometry as THREE.PlaneGeometry} material={material as THREE.MeshStandardMaterial} />;
+}
+
 };
 
 const AxisLines: React.FC<{ mode: '2d' | '3d' }> = ({ mode }) => {
@@ -206,7 +208,7 @@ function App() {
       }
       setEquation(inputValue);
       setError('');
-    } catch (err) {
+    } catch {
       setError('Invalid equation syntax');
     }
   }, [inputValue, mode]);
@@ -503,7 +505,7 @@ function App() {
               </React.Fragment>
             ))}
             
-            {mode === '3d' && [-6, -5, -4, -3, -2,-1, 0, 1, 2, 3, 4, 5, 6].map((tick) => (
+            {mode === '3d' && [-6, -4, -2, 2, 4, 6].map((tick) => (
               <React.Fragment key={`z-${tick}`}>
                 <Text
                   position={[0.4, 0, tick]}

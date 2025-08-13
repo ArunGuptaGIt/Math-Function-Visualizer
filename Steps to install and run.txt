@@ -1,0 +1,4 @@
+cd mathequationvisualizer
+npm install
+npm add @react-three/fiber@latest @react-three/drei@latest three@latest mathjs@latest
+npm run dev
